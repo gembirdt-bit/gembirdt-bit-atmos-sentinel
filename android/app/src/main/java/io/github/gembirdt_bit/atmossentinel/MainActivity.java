@@ -149,6 +149,15 @@ public class MainActivity extends Activity {
         coffee.setTextSize(13);
         coffee.setOnClickListener(v -> donate());
         foot.addView(coffee, new LinearLayout.LayoutParams(-2, -2));
+        Button apps = button("📱 Sve Atmos aplikacije", false);
+        apps.setTextSize(13);
+        apps.setOnClickListener(v -> {
+            try { startActivity(new Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://gembirdt-bit.github.io/atmosaplikacije/"))); }
+            catch (Exception ex) { Toast.makeText(this, "Nema pregledača za otvaranje linka", Toast.LENGTH_LONG).show(); }
+        });
+        LinearLayout.LayoutParams alp = new LinearLayout.LayoutParams(-2, -2);
+        alp.topMargin = dp(8);
+        foot.addView(apps, alp);
         String ver = "";
         try { ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName; } catch (Exception ignored) { }
         TextView vt = text("Atmos Sentinel " + ver, 12, MUTED, false);
